@@ -1,5 +1,6 @@
 package kr.co.shortenurlservice.domain;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import java.util.List;
 
 public interface ShortenUrlRepository {
@@ -7,4 +8,7 @@ public interface ShortenUrlRepository {
     void asyncSaveShortenUrl(ShortenUrl shortenUrl);
     void increaseRedirectCount(ShortenUrl shortenUrl);
     ShortenUrl findShortenUrlByShortenUrlKey(String shortenUrlKey);
+
+    @Scheduled(fixedRate = 10000)
+    void updateRedirectCounts();
 }
